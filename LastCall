@@ -1,0 +1,36 @@
+00353833822713
+ContactsResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ReallySimple" : 
+Contacts : 
+Contact : 
+Id : 55889
+AccountId : 49407
+First : Graham
+Last : OShea
+Notes : Cheap Hotels Ltd  total_payments 2281.05 first_invoice 06/03/2012 last_invoice 25/03/2014&amp;#10;This user clicked on the pricing link&amp;#10;
+Email : graham@dgcomms.co.uk
+DecisionMaker : false
+Hold : false
+ContactAddressLine : 58 Leinster Woods
+ContactAddressCity : Maynooth
+ContactAddressZip : na
+ContactAddressCountry : Ireland
+Custom02 : Cheap Hotels Ltd
+Custom05 : 3.53834E+11
+Custom07 : +353833822713
+Custom13 : Ireland
+Custom14 : 0
+Custom15 : Trial
+Custom16 : lon-b
+Custom17 : True
+ModifiedDate : 2014-12-12T10:26:57
+ModifiedBy : 27
+CreatedDate : 2011-12-13T13:21:50
+CreatedBy : 7
+Result : 
+Status : 0
+Count : 1
+ContactsResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="ReallySimple" : 
+Result : 
+Status : 3
+Count : 0
+Text : Record not found
