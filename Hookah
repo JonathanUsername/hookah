@@ -7,6 +7,7 @@
 import ipdb
 import subprocess as sub
 import re
+import json
 from urllib2 import urlopen
 
 # to read API's xml response
@@ -37,7 +38,13 @@ PWD = os.path.dirname(os.path.realpath(__file__))
 # Configure this yourself
 my_number = "2422435" 
 just_called = []
-browser = "/usr/bin/google-chrome"
+
+json_file=open('config.json')
+json_data = json.load(json_file)
+browser = json_data["Browser"]
+api_password = json_data["ApiPassword"]
+customer_id = json_data["CustomerId"]
+
 
 
 # --------------------------------------- Utils ---------------------------------------
@@ -89,7 +96,7 @@ def getInfo(field, obj):
 
 def queryAPI(num, field):
 	print "queryAPI",num,field
-	query = urlopen("http://webtrans.reallysimplesystems.com/api/api.v2.asmx/GetContacts?CustomerId=1107&APIPassword=elasticcloud.47&SearchField=%s&SearchValue=%s" % (field, num)).read()
+	query = urlopen("http://webtrans.reallysimplesystems.com/api/api.v2.asmx/GetContacts?CustomerId=%s&APIPassword=%s&SearchField=%s&SearchValue=%s" % (customer_id, api_password, field, num)).read()
 	return parseXML(query, num, field)
 
 def getContact(num, GUI):
@@ -114,8 +121,11 @@ def listenForSIP(GUI):
 		sip_flag = "From: <sip:"
 		if sip_flag in line:
 			num_start = len(sip_flag)
-			num_end = line.index("@sip.gradwell")
-			num = line[num_start:num_end]
+			try:
+				num_end = line.index("@sip.gradwell")
+				num = line[num_start:num_end]
+			except:
+				print "substring not found"
 			if isANumber(num) and num != my_number and num not in just_called:
 				print num, just_called
 				just_called.append(num)
@@ -173,12 +183,13 @@ class GUI(GridLayout):
 
 class CRMHookerApp(App):
 	def build(self):
+		self.icon = 'assets/icon.jpg'
 		root = ScrollView(size_hint=(None, None), size=Window.size, bar_width=20, scroll_type=["bars"], scroll_y=1)
 		self.layout = GUI(cols=1, padding=30, spacing=50, size_hint_y=None, root=root, app=self, row_force_default=True, row_default_height=200)
 		self.layout.bind(minimum_height=self.layout.setter('height'))
 		root.add_widget(self.layout)
 		self.last_num = ""
-		# getContact("07714204512", self.layout)
+		self.title = "CRM Hooker"
 		Clock.schedule_interval(self.update, 1) 
 		return root
 	def update(self, other):

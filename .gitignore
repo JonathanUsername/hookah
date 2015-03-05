@@ -1,1 +1,5 @@
+config.json
 sniff_logs.txt
+*.xml
+*.txt
+*.json
