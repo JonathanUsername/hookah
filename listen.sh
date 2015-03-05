@@ -35,7 +35,7 @@ queryapi() {
 
 export -f queryapi
 
-sudo tcpdump -W 1 -w sniff_logs.txt -i eth0 udp | grep "$SIP_FLAG" | cut -c `expr $FLAG_LEN + 1`- |  cut -d "@" -f 1 | tee /dev/tty | xargs -I THIS bash -c "queryapi THIS"
+sudo tcpdump -W 1 -C 10 -w sniff_logs.txt -i eth0 udp | grep "$SIP_FLAG" | cut -c `expr $FLAG_LEN + 1`- |  cut -d "@" -f 1 | tee /dev/tty | xargs -I THIS bash -c "queryapi THIS"
 
 #real
 # sudo tcpdump -A udp | grep "$1" | cut -c $FLAG_LEN- |  cut -d "@" -f 1 | xargs -I number queryApi number
