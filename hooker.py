@@ -128,7 +128,7 @@ class CentreLabel(Button):
 	def __init__(self, **kwargs):
 		super(CentreLabel, self).__init__(**kwargs)
 		self.x = Window.width/2 - self.width/2
-		self.font_name= PWD + "/assets/Montserrat-Bold.ttf"
+		self.font_name=PWD + "/assets/Montserrat-Regular.ttf"
 		self.size = (300,300)
 		for key, value in kwargs.iteritems():
 			if key == "rss_id":
@@ -149,7 +149,7 @@ class GUI(GridLayout):
 		self.app = kwargs["app"]
 		self.contacts = []
 		self.buttons = []
-		self.headline = Label(text="", font_size="40sp")
+		self.headline = Label(text="", font_size="40sp", font_name=PWD + "/assets/Montserrat-Bold.ttf")
 		self.add_widget(self.headline)
 	def addContacts(self, **kwargs):
 		obj = kwargs["clients"]
